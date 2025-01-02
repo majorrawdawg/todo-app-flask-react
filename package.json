@@ -1,0 +1,25 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "A full-stack Todo application with Flask backend and React frontend",
+  "main": "start.js",
+  "scripts": {
+    "start": "node start.js",
+    "install-all": "npm install && cd backend && pip install -r requirements.txt && cd ../frontend && npm install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "todo",
+    "flask",
+    "react",
+    "fullstack"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^6.2.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
