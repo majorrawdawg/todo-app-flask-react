@@ -84,6 +84,38 @@ npm start
 4. Push to the branch: `git push origin feature/AmazingFeature`
 5. Open a pull request
 
+## For Project Developers
+
+If you're working directly on this project repository, follow these steps to push your changes and create a pull request:
+
+1. Ensure you're on your feature branch:
+   ```
+   git branch
+   ```
+
+2. Add and commit your changes if you haven't already:
+   ```
+   git add .
+   git commit -m "Brief description of your changes"
+   ```
+
+3. Push your feature branch to the remote repository:
+   ```
+   git push origin feature/your-feature-name
+   ```
+
+4. Go to the GitHub repository page (https://github.com/majorrawdawg/todo-app-flask-react)
+
+5. Click on "Pull requests" and then "New pull request"
+
+6. Set the base branch (where you want to merge your changes) to `release/main` and the compare branch to your feature branch
+
+7. Click "Create pull request"
+
+8. Add a title and description for your pull request, then click "Create pull request"
+
+9. Wait for review and merge by the project maintainers
+
 ## License
 
 This project is licensed under the MIT License.
@@ -97,4 +129,4 @@ This project is licensed under the MIT License.
 ---
 
 Initialized on 2025-01-02
-Last updated on [Current Date]
+Last updated on 2023-05-01
