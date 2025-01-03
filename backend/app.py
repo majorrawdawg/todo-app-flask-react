@@ -4,11 +4,14 @@ from models import db, Todo
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_caching import Cache
+from flask_migrate import Migrate
 import logging
 from logging.handlers import RotatingFileHandler
 from marshmallow import Schema, fields, ValidationError
+from config import Config
 
 app = Flask(__name__)
+app.config.from_object(Config)
 CORS(app)
 
 # Configure logging
@@ -16,27 +19,17 @@ handler = RotatingFileHandler('app.log', maxBytes=10000, backupCount=1)
 handler.setLevel(logging.INFO)
 app.logger.addHandler(handler)
 
-# Configure the SQLite database with connection pooling
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todos.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
-    'pool_size': 10,
-    'pool_recycle': 3600,
-    'pool_pre_ping': True
-}
-
 # Initialize the database
 db.init_app(app)
+
+# Initialize Flask-Migrate
+migrate = Migrate(app, db)
 
 # Set up rate limiting
 limiter = Limiter(app, key_func=get_remote_address, default_limits=["200 per day", "50 per hour"])
 
 # Set up caching
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
-
-# Create the database tables
-with app.app_context():
-    db.create_all()
 
 # Request validation schema
 class TodoSchema(Schema):

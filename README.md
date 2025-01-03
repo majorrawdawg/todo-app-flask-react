@@ -14,7 +14,7 @@ A full-stack Todo application with a Flask backend and React frontend, featuring
 
 - Backend: Python, Flask
 - Frontend: React
-- Database: SQLite (easily upgradable to PostgreSQL)
+- Database: SQLite (local), PostgreSQL (production)
 - Additional: Flask-Limiter, Flask-Caching, Marshmallow for validation
 - Testing: Playwright, pytest
 
@@ -23,6 +23,7 @@ A full-stack Todo application with a Flask backend and React frontend, featuring
 - Python 3.8+
 - Node.js 14+
 - npm 6+
+- Heroku CLI (for deployment)
 
 ## Setup
 
@@ -151,7 +152,69 @@ This will open a detailed HTML report of the test results in your default browse
 
 ## Deployment
 
-(Deployment instructions will be added in future updates)
+To deploy the Todo App to Heroku, follow these steps:
+
+1. Sign up for a Heroku account if you haven't already (https://signup.heroku.com/).
+
+2. Install the Heroku CLI: https://devcenter.heroku.com/articles/heroku-cli
+
+3. Log in to Heroku from the terminal:
+   ```
+   heroku login
+   ```
+
+4. Create a new Heroku app:
+   ```
+   heroku create your-app-name
+   ```
+
+5. Add the PostgreSQL addon to your Heroku app:
+   ```
+   heroku addons:create heroku-postgresql:hobby-dev
+   ```
+
+6. Set the following config variables for your Heroku app:
+   ```
+   heroku config:set FLASK_APP=backend/app.py
+   heroku config:set REACT_APP_API_URL=https://your-app-name.herokuapp.com
+   ```
+
+7. Add a Procfile to the root directory of your project (if not already present):
+   ```
+   web: gunicorn --chdir backend app:app
+   release: python backend/manage.py db upgrade
+   ```
+
+8. Update your package.json to include a postbuild script for the frontend:
+   ```json
+   "scripts": {
+     ...
+     "heroku-postbuild": "cd frontend && npm install && npm run build"
+   }
+   ```
+
+9. Commit all changes to Git:
+   ```
+   git add .
+   git commit -m "Prepare for Heroku deployment"
+   ```
+
+10. Push your code to Heroku:
+    ```
+    git push heroku main
+    ```
+
+11. Run database migrations:
+    ```
+    heroku run python backend/manage.py db upgrade
+    ```
+
+12. Open your deployed app:
+    ```
+    heroku open
+    ```
+
+Your Todo App should now be live on Heroku!
 
 ## Contributing
 

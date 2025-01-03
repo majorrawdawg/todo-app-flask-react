@@ -3,6 +3,8 @@ import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
 import './App.css';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function App() {
   const [todos, setTodos] = useState([]);
 
@@ -12,7 +14,7 @@ function App() {
 
   const fetchTodos = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/todos');
+      const response = await fetch(`${API_URL}/api/todos`);
       const data = await response.json();
       setTodos(data);
     } catch (error) {
@@ -22,7 +24,7 @@ function App() {
 
   const addTodo = async (title) => {
     try {
-      const response = await fetch('http://localhost:5000/api/todos', {
+      const response = await fetch(`${API_URL}/api/todos`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -39,7 +41,7 @@ function App() {
   const toggleTodo = async (id) => {
     try {
       const todoToToggle = todos.find(todo => todo.id === id);
-      const response = await fetch(`http://localhost:5000/api/todos/${id}`, {
+      const response = await fetch(`${API_URL}/api/todos/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -55,7 +57,7 @@ function App() {
 
   const deleteTodo = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/todos/${id}`, {
+      await fetch(`${API_URL}/api/todos/${id}`, {
         method: 'DELETE',
       });
       setTodos(todos.filter(todo => todo.id !== id));
