@@ -44,6 +44,8 @@ A full-stack Todo application with a Flask backend and React frontend, featuring
    pip install -r requirements.txt
    ```
 
+   Note: If you encounter any package version conflicts, you may need to update the versions in the requirements.txt file. The current versions have been tested and should work together, but package updates may introduce new conflicts over time.
+
 4. Set up Flask environment variable:
    - On macOS/Linux:
      ```
@@ -237,4 +239,4 @@ This project is licensed under the MIT License.
 
 ---
 
-Last updated on 2023-05-01
+Last updated on 2023-05-02
