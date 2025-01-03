@@ -16,7 +16,7 @@ A full-stack Todo application with a Flask backend and React frontend, featuring
 - Frontend: React
 - Database: SQLite (easily upgradable to PostgreSQL)
 - Additional: Flask-Limiter, Flask-Caching, Marshmallow for validation
-- Testing: Playwright
+- Testing: Playwright, pytest
 
 ## Prerequisites
 
@@ -32,22 +32,49 @@ A full-stack Todo application with a Flask backend and React frontend, featuring
    cd todo-app-flask-react
    ```
 
-2. Install dependencies:
+2. Install root-level dependencies:
    ```
-   npm run install-all
+   npm install
    ```
 
-   This command will install both backend and frontend dependencies.
+3. Install backend dependencies:
+   ```
+   cd backend
+   pip install -r requirements.txt
+   ```
+
+4. Set up Flask environment variable:
+   - On macOS/Linux:
+     ```
+     export FLASK_APP=app.py
+     ```
+   - On Windows:
+     ```
+     set FLASK_APP=app.py
+     ```
+
+5. Install frontend dependencies:
+   ```
+   cd ../frontend
+   npm install
+   ```
 
 ## Running the Application
 
 To start both the backend and frontend concurrently:
 
-```
-npm start
-```
+1. Navigate to the root directory of the project.
+2. Run the following command:
+   ```
+   npm start
+   ```
+3. This will start the Flask backend on `http://localhost:5000` and the React frontend on `http://localhost:3000`.
+4. Open a web browser and navigate to `http://localhost:3000` to use the Todo app.
 
-This will start the Flask backend on `http://localhost:5000` and the React frontend on `http://localhost:3000`.
+If you encounter any issues:
+- Ensure all dependencies are correctly installed.
+- Check that the FLASK_APP environment variable is set correctly.
+- Verify that ports 5000 and 3000 are not in use by other applications.
 
 ## Development
 
@@ -88,9 +115,9 @@ npm start
 
 ## Testing
 
-We use Playwright for end-to-end testing of our application. The tests cover all major functionalities of the Todo app, including adding, editing, completing, and deleting todos, as well as filtering and clearing completed todos.
+We use Playwright for end-to-end testing of our application and pytest for backend unit tests.
 
-To run the tests:
+To run the frontend tests:
 
 1. Ensure that both the backend and frontend are running.
 2. Open a new terminal and navigate to the frontend directory:
@@ -102,9 +129,18 @@ To run the tests:
    npm test
    ```
 
-This will run the tests in Chromium, Firefox, and WebKit browsers.
+To run the backend tests:
 
-To view the test results in a browser:
+1. Navigate to the backend directory:
+   ```
+   cd backend
+   ```
+2. Run pytest:
+   ```
+   pytest
+   ```
+
+To view the Playwright test results in a browser:
 
 1. After running the tests, open the HTML report:
    ```
@@ -125,38 +161,6 @@ This will open a detailed HTML report of the test results in your default browse
 4. Push to the branch: `git push origin feature/AmazingFeature`
 5. Open a pull request
 
-## For Project Developers
-
-If you're working directly on this project repository, follow these steps to push your changes and create a pull request:
-
-1. Ensure you're on your feature branch:
-   ```
-   git branch
-   ```
-
-2. Add and commit your changes if you haven't already:
-   ```
-   git add .
-   git commit -m "Brief description of your changes"
-   ```
-
-3. Push your feature branch to the remote repository:
-   ```
-   git push origin feature/your-feature-name
-   ```
-
-4. Go to the GitHub repository page (https://github.com/majorrawdawg/todo-app-flask-react)
-
-5. Click on "Pull requests" and then "New pull request"
-
-6. Set the base branch (where you want to merge your changes) to `release/main` and the compare branch to your feature branch
-
-7. Click "Create pull request"
-
-8. Add a title and description for your pull request, then click "Create pull request"
-
-9. Wait for review and merge by the project maintainers
-
 ## License
 
 This project is licensed under the MIT License.
@@ -170,5 +174,4 @@ This project is licensed under the MIT License.
 
 ---
 
-Initialized on 2025-01-02
 Last updated on 2023-05-01
