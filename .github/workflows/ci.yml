@@ -23,6 +23,11 @@ jobs:
         cd backend
         pip install -r requirements.txt
     
+    - name: Run backend tests
+      run: |
+        cd backend
+        pytest tests/
+
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
