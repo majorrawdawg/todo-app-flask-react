@@ -26,7 +26,8 @@ db.init_app(app)
 migrate = Migrate(app, db)
 
 # Set up rate limiting
-limiter = Limiter(app, key_func=get_remote_address, default_limits=["200 per day", "50 per hour"])
+limiter = Limiter(key_func=get_remote_address, default_limits=["200 per day", "50 per hour"])
+limiter.init_app(app)
 
 # Set up caching
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
