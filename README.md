@@ -8,6 +8,7 @@ A full-stack Todo application with a Flask backend and React frontend, featuring
 - Mark tasks as complete
 - Clean, intuitive UI with subtle 3D effects
 - Optimized backend for improved performance and stability
+- Comprehensive end-to-end testing with Playwright
 
 ## Tech Stack
 
@@ -15,6 +16,7 @@ A full-stack Todo application with a Flask backend and React frontend, featuring
 - Frontend: React
 - Database: SQLite (easily upgradable to PostgreSQL)
 - Additional: Flask-Limiter, Flask-Caching, Marshmallow for validation
+- Testing: Playwright
 
 ## Prerequisites
 
@@ -86,7 +88,30 @@ npm start
 
 ## Testing
 
-(Instructions for running tests will be added in future updates)
+We use Playwright for end-to-end testing of our application. The tests cover all major functionalities of the Todo app, including adding, editing, completing, and deleting todos, as well as filtering and clearing completed todos.
+
+To run the tests:
+
+1. Ensure that both the backend and frontend are running.
+2. Open a new terminal and navigate to the frontend directory:
+   ```
+   cd frontend
+   ```
+3. Run the Playwright tests:
+   ```
+   npm test
+   ```
+
+This will run the tests in Chromium, Firefox, and WebKit browsers.
+
+To view the test results in a browser:
+
+1. After running the tests, open the HTML report:
+   ```
+   npx playwright show-report
+   ```
+
+This will open a detailed HTML report of the test results in your default browser.
 
 ## Deployment
 
@@ -140,6 +165,7 @@ This project is licensed under the MIT License.
 
 - Flask for the robust backend framework
 - React for the powerful frontend library
+- Playwright for comprehensive end-to-end testing
 - All contributors who participate in this project
 
 ---
