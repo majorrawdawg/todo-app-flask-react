@@ -2,7 +2,28 @@
 
 A full-stack Todo application with a Flask backend and React frontend, featuring a polished UI and optimized backend performance.
 
-[... keep the existing content up to the "Setup" section ...]
+## Features
+
+- Create, edit, and delete tasks
+- Mark tasks as complete
+- Clean, intuitive UI with subtle 3D effects
+- Optimized backend for improved performance and stability
+- Comprehensive end-to-end testing with Playwright
+
+## Tech Stack
+
+- Backend: Python, Flask
+- Frontend: React
+- Database: SQLite (local), PostgreSQL (production)
+- Additional: Flask-Limiter, Flask-Caching, Marshmallow for validation
+- Testing: Playwright, pytest
+
+## Prerequisites
+
+- Python 3.8+
+- Node.js 14+
+- npm 6+
+- Heroku CLI (for deployment)
 
 ## Setup
 
@@ -12,42 +33,113 @@ A full-stack Todo application with a Flask backend and React frontend, featuring
    cd todo-app-flask-react
    ```
 
-2. Install root-level dependencies:
+2. Install dependencies:
    ```
-   npm install
-   ```
-
-3. Install backend dependencies:
-   ```
-   cd backend
-   pip install -r requirements.txt
+   npm run install-all
    ```
 
-   Note: If you encounter any package version conflicts, you may need to update the versions in the requirements.txt file. The current versions have been tested and should work together, but package updates may introduce new conflicts over time.
-
-4. Set up Flask environment variable:
+3. Set up Flask environment variable:
    - On macOS/Linux:
      ```
-     export FLASK_APP=app.py
+     export FLASK_APP=backend/app.py
      ```
    - On Windows:
      ```
-     set FLASK_APP=app.py
+     set FLASK_APP=backend/app.py
      ```
 
-5. Install frontend dependencies:
+## Running the Application Locally
+
+To start both the backend and frontend concurrently:
+
+```
+npm start
+```
+
+This will start the Flask backend on `http://localhost:5000` and the React frontend on `http://localhost:3000`.
+
+## Development
+
+- Backend code is located in the `backend/` directory
+- Frontend code is located in the `frontend/` directory
+
+### Backend Development
+
+To run only the backend:
+
+```
+npm run start-backend
+```
+
+### Frontend Development
+
+To run only the frontend:
+
+```
+npm run start-frontend
+```
+
+## Testing
+
+We use Playwright for end-to-end testing of our application and pytest for backend unit tests.
+
+To run the frontend tests:
+
+```
+cd frontend
+npm test
+```
+
+To run the backend tests:
+
+```
+cd backend
+pytest
+```
+
+To view the Playwright test results in a browser:
+
+```
+npx playwright show-report
+```
+
+## Deployment to Heroku
+
+1. Install the Heroku CLI and log in:
    ```
-   cd ../frontend
-   npm install
+   heroku login
    ```
 
-   If you encounter any issues with frontend dependencies, try removing the node_modules folder and package-lock.json file before reinstalling:
+2. Create a new Heroku app:
    ```
-   rm -rf node_modules package-lock.json
-   npm install
+   heroku create your-app-name
    ```
 
-[... keep the existing content up to the "Testing" section ...]
+3. Add the PostgreSQL addon:
+   ```
+   heroku addons:create heroku-postgresql:hobby-dev
+   ```
+
+4. Set the necessary config variables:
+   ```
+   heroku config:set FLASK_APP=backend/app.py
+   heroku config:set REACT_APP_API_URL=https://your-app-name.herokuapp.com
+   ```
+
+5. Push your code to Heroku:
+   ```
+   git push heroku main
+   ```
+
+6. Run database migrations:
+   ```
+   heroku run flask db upgrade
+   ```
+
+7. Open your deployed app:
+   ```
+   heroku open
+   ```
 
 ## Troubleshooting
 
@@ -62,12 +154,28 @@ If you encounter any issues while setting up or running the application, try the
    rm -rf node_modules package-lock.json
    npm install
    ```
-5. If you see an error related to the Limiter initialization, ensure you're using the latest version of the app.py file, which includes the corrected Limiter setup.
 
 If problems persist, please open an issue on the GitHub repository with details about the error you're encountering.
 
-[... keep the rest of the existing content ...]
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch: `git checkout -b feature/AmazingFeature`
+3. Commit your changes: `git commit -m 'Add some AmazingFeature'`
+4. Push to the branch: `git push origin feature/AmazingFeature`
+5. Open a pull request
+
+## License
+
+This project is licensed under the MIT License.
+
+## Acknowledgments
+
+- Flask for the robust backend framework
+- React for the powerful frontend library
+- Playwright for comprehensive end-to-end testing
+- All contributors who participate in this project
 
 ---
 
-Last updated on 2023-05-03
+Last updated on 2023-05-04
