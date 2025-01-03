@@ -1,18 +1,20 @@
 # Todo App
 
-A full-stack Todo application with a Flask backend and React frontend.
+A full-stack Todo application with a Flask backend and React frontend, featuring a polished UI and optimized backend performance.
 
 ## Features
 
 - Create, edit, and delete tasks
 - Mark tasks as complete
-- Clean UI design with intuitive UX
+- Clean, intuitive UI with subtle 3D effects
+- Optimized backend for improved performance and stability
 
 ## Tech Stack
 
 - Backend: Python, Flask
 - Frontend: React
 - Database: SQLite (easily upgradable to PostgreSQL)
+- Additional: Flask-Limiter, Flask-Caching, Marshmallow for validation
 
 ## Prerequisites
 
@@ -67,6 +69,20 @@ To run only the frontend:
 cd frontend
 npm start
 ```
+
+## Backend Optimizations
+
+- Implemented connection pooling for improved database performance
+- Added rate limiting to prevent API abuse
+- Implemented caching for frequently accessed data
+- Added request validation using Marshmallow schemas
+- Improved error handling and logging
+
+## UI Enhancements
+
+- Added subtle 3D effects for a more polished look
+- Implemented a refined color scheme
+- Improved responsiveness for various screen sizes
 
 ## Testing
 
