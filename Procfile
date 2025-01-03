@@ -1,2 +1,2 @@
-web: gunicorn --chdir backend app:app
-release: python backend/manage.py db upgrade
+web: npm start
+release: cd backend && flask db upgrade
